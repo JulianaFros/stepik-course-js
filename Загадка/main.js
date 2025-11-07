@@ -3,7 +3,7 @@ var riddle = {
     correctAnswer: 'лампочка',
     hints: ['это несъедобное', 'это не фрукт'],
     tries: 3,
-    checkAnswer() {
+    checkAnswer(guessedAnswer) {
         const correctAnswer = 'Правильный ответ:';
         const uncorrectAnswer = 'Неправильный ответ. Попробуйте еще раз.';
         const noTries = 'Попытки закончились.';
@@ -22,6 +22,12 @@ var riddle = {
             if (this.tries > 0) {
                 alert(uncorrectAnswer);
                 console.log(uncorrectAnswer);
+                
+                const hint = this.hints[this.tries === 2 ? 0 : 1];
+
+                if (this.tries) {
+                    alert('Подсказка: ' + hint);
+                }
             } else {
                 alert(noTries);
                 console.log(noTries);
@@ -40,8 +46,6 @@ function check() {
     var guessedAnswer = input.value;
 
     if (guessedAnswer) {
-        
-        // TODO: вызвать функцию checkAnswer у объекта загадки, передав туда ответ
-        
+        riddle.checkAnswer(guessedAnswer);
     }
 }
